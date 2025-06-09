@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="PaletteLockJam"
+config/tags=PackedStringArray("jam")
+run/main_scene="uid://ouqm7b1no7cn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [file_customization]
 
