@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw446kblm4gtv"]
+
+[ext_resource type="Script" uid="uid://cqm555tq5063p" path="res://scenes/tools/render.gd" id="1_mwjap"]
+[ext_resource type="Script" uid="uid://c61eymebxygxi" path="res://scripts/sprite_stack.gd" id="2_320ab"]
+[ext_resource type="Texture2D" uid="uid://dme6fixh5li2g" path="res://assets/school_chair.png" id="3_mwjap"]
+
+[node name="Render" type="Node" node_paths=PackedStringArray("subviewport", "sprite_stack", "camera")]
+script = ExtResource("1_mwjap")
+subviewport = NodePath("CanvasLayer/Control/SubViewportContainer/SubViewport")
+sprite_stack = NodePath("CanvasLayer/Control/SubViewportContainer/SubViewport/SpriteStack")
+camera = NodePath("CanvasLayer/Control/SubViewportContainer/SubViewport/Camera2D")
+sprite_stack_rotation = 15.0
+save_incremental = true
+clear_output = true
+output_path = "res://assets/spritestack_output/"
+file_name = "chair"
+sprite_sheet_save_path = "res://assets/objects/"
+sprite_sheet_file_name = "chair"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Control/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_vertices_to_pixel = true
+mesh_lod_threshold = 1024.0
+size = Vector2i(95, 95)
+render_target_update_mode = 4
+
+[node name="SpriteStack" type="CanvasGroup" parent="CanvasLayer/Control/SubViewportContainer/SubViewport"]
+position = Vector2(75, 75)
+script = ExtResource("2_320ab")
+texture = ExtResource("3_mwjap")
+hframes = 12
+spacting = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Control/SubViewportContainer/SubViewport"]
+position = Vector2(50, 50)
