@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://ouqm7b1no7cn"]
 
-[ext_resource type="Texture2D" uid="uid://btkvj22q4g710" path="res://assets/objects/desk.png" id="1_2yu1p"]
+[ext_resource type="PackedScene" uid="uid://c0mb2s4dm2mtu" path="res://scenes/classroom/classroom.tscn" id="1_2yu1p"]
 
 [node name="Root" type="Node"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2yu1p")
+[node name="Classroom" parent="." instance=ExtResource("1_2yu1p")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
