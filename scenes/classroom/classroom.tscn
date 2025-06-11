@@ -1,17 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0mb2s4dm2mtu"]
+[gd_scene load_steps=11 format=3 uid="uid://c0mb2s4dm2mtu"]
 
 [ext_resource type="Texture2D" uid="uid://6w4yaqwrfrsb" path="res://assets/rooms/classroom.png" id="1_4r5oh"]
-[ext_resource type="PackedScene" uid="uid://8o5ogsbmh1af" path="res://scenes/objecs/desk.tscn" id="2_2nu6u"]
+[ext_resource type="Script" uid="uid://ddoib6bxl8hcy" path="res://scenes/classroom/classroom.gd" id="1_h5105"]
+[ext_resource type="PackedScene" uid="uid://c0dinj64atf53" path="res://scenes/objecs/student_desk/student_desk.tscn" id="2_2nu6u"]
+[ext_resource type="PackedScene" uid="uid://crn5jwbu30vkh" path="res://scenes/objecs/paper_scrap.tscn" id="2_h108p"]
+[ext_resource type="Theme" uid="uid://cypslpnbpj2x" path="res://resources/base_theme.tres" id="3_2n0w6"]
+[ext_resource type="PackedScene" uid="uid://di5eluip7pfk2" path="res://scenes/classroom/aligment_indicator.tscn" id="5_2n0w6"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2nu6u"]
-normal = Vector2(-1, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fe7p"]
+size = Vector2(600, 13)
 
-[node name="Classroom" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n0w6"]
+size = Vector2(600, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h108p"]
+size = Vector2(20, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j162"]
+size = Vector2(20, 1000)
+
+[node name="Classroom" type="Node2D" node_paths=PackedStringArray("desks_grid") groups=["Classroom"]]
+script = ExtResource("1_h5105")
+desks_grid = NodePath("Sprite2D/Desks")
+scrap_amount = 20
+position_offset_max = Vector2(20, 20)
+paper_scrap = ExtResource("2_h108p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4r5oh")
 
-[node name="GridContainer" type="GridContainer" parent="Sprite2D"]
+[node name="Timer" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -44.0
+offset_top = -459.0
+offset_right = 46.0
+offset_bottom = -419.0
+theme = ExtResource("3_2n0w6")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[color=#ffe7d6]20.00[/color]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desks" type="GridContainer" parent="Sprite2D"]
 offset_left = -238.0
 offset_top = -140.0
 offset_right = 242.0
@@ -20,155 +52,236 @@ theme_override_constants/h_separation = 120
 theme_override_constants/v_separation = 120
 columns = 5
 
-[node name="Control" type="Control" parent="Sprite2D/GridContainer"]
+[node name="Control" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control" instance=ExtResource("2_2nu6u")]
 
-[node name="Control2" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control2" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control2" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control2" instance=ExtResource("2_2nu6u")]
 
-[node name="Control3" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control2" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control3" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control3" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control3" instance=ExtResource("2_2nu6u")]
 
-[node name="Control4" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control3" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control4" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control4" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control4" instance=ExtResource("2_2nu6u")]
 
-[node name="Control5" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control4" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control5" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control5" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control5" instance=ExtResource("2_2nu6u")]
 
-[node name="Control6" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control5" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control6" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control6" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control6" instance=ExtResource("2_2nu6u")]
 
-[node name="Control7" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control6" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control7" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control7" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control7" instance=ExtResource("2_2nu6u")]
 
-[node name="Control8" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control7" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control8" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control8" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control8" instance=ExtResource("2_2nu6u")]
 
-[node name="Control9" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control8" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control9" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control9" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control9" instance=ExtResource("2_2nu6u")]
 
-[node name="Control10" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control9" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control10" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control10" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control10" instance=ExtResource("2_2nu6u")]
 
-[node name="Control11" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control10" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control11" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control11" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control11" instance=ExtResource("2_2nu6u")]
 
-[node name="Control12" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control11" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control12" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control12" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control12" instance=ExtResource("2_2nu6u")]
 
-[node name="Control13" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control12" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control13" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control13" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control13" instance=ExtResource("2_2nu6u")]
 
-[node name="Control14" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control13" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control14" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control14" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control14" instance=ExtResource("2_2nu6u")]
 
-[node name="Control15" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control14" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control15" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control15" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control15" instance=ExtResource("2_2nu6u")]
 
-[node name="Control16" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control15" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control16" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control16" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control16" instance=ExtResource("2_2nu6u")]
 
-[node name="Control17" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control16" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control17" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control17" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control17" instance=ExtResource("2_2nu6u")]
 
-[node name="Control18" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control17" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control18" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control18" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control18" instance=ExtResource("2_2nu6u")]
 
-[node name="Control19" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control18" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control19" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control19" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control19" instance=ExtResource("2_2nu6u")]
 
-[node name="Control20" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control19" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control20" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control20" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control20" instance=ExtResource("2_2nu6u")]
 
-[node name="Control21" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control20" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control21" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control21" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control21" instance=ExtResource("2_2nu6u")]
 
-[node name="Control22" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control21" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control22" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control22" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control22" instance=ExtResource("2_2nu6u")]
 
-[node name="Control23" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control22" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control23" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control23" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control23" instance=ExtResource("2_2nu6u")]
 
-[node name="Control24" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control23" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control24" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control24" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control24" instance=ExtResource("2_2nu6u")]
 
-[node name="Control25" type="Control" parent="Sprite2D/GridContainer"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control24" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Control25" type="Control" parent="Sprite2D/Desks"]
 layout_mode = 2
 
-[node name="Desk" parent="Sprite2D/GridContainer/Control25" instance=ExtResource("2_2nu6u")]
+[node name="StudentDesk" parent="Sprite2D/Desks/Control25" instance=ExtResource("2_2nu6u")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+[node name="AligmentIndicator" parent="Sprite2D/Desks/Control25" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Colliders" type="Node2D" parent="Sprite2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D/Colliders"]
 position = Vector2(0, 487)
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_2nu6u")
-disabled = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Colliders/StaticBody2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_0fe7p")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Sprite2D"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Sprite2D/Colliders"]
 position = Vector2(0, -384)
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D2"]
-shape = SubResource("WorldBoundaryShape2D_2nu6u")
-disabled = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Colliders/StaticBody2D2"]
+position = Vector2(0, -62.5)
+shape = SubResource("RectangleShape2D_2n0w6")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Sprite2D"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Sprite2D/Colliders"]
 position = Vector2(-288, -160)
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D3"]
-shape = SubResource("WorldBoundaryShape2D_2nu6u")
-disabled = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Colliders/StaticBody2D3"]
+position = Vector2(-10, 153)
+shape = SubResource("RectangleShape2D_h108p")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="Sprite2D"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Sprite2D/Colliders"]
 position = Vector2(288, -72)
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D4"]
-shape = SubResource("WorldBoundaryShape2D_2nu6u")
-disabled = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Colliders/StaticBody2D4"]
+position = Vector2(10, 63)
+shape = SubResource("RectangleShape2D_4j162")

@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @export var speed: float
+@export var push_force: float
 @onready var visual: CanvasGroup = $Visual
+@onready var radar: Radar2D = $Radar2D
 
 var state: StateDelegate
 
@@ -10,20 +12,26 @@ var last_non_zero_velocity: Vector2
 
 var sprites: Array[AnimatedSprite2D]
 
+
 func _ready() -> void:
+	radar.body_tracked.connect(func (body: Node2D) -> void: body.is_in_range = true)
+	radar.body_untracked.connect(func (body: Node2D) -> void: body.is_in_range = false)
 	state = StateDelegate.new()
 	state.add_state(_idle_state, "IDLE", _idle_enter_state)
 	state.add_state(_walk_state, "WALK", _walk_enter_state)
 	state.set_default_state(_idle_state)
 	sprites.assign(visual.get_children().filter(func (x: Node) -> bool: return x is AnimatedSprite2D))
-	
 
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * speed * delta
 	if !velocity.is_zero_approx():
 		last_non_zero_velocity = velocity
-	move_and_slide()
+	if move_and_slide(): # true if collided
+		for i in get_slide_collision_count():
+			var col = get_slide_collision(i)
+			if col.get_collider() is RigidBody2D:
+				col.get_collider().apply_force(col.get_normal() * -push_force)
 	flip_h()
 	facing_direction = _calculate_facing_direction()
 	state.tick()

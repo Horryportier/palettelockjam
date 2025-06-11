@@ -52,7 +52,7 @@ render_target_update_mode = 4
 position = Vector2(75, 75)
 script = ExtResource("2_320ab")
 texture = ExtResource("3_mwjap")
-hframes = 16
+hframes = 19
 spacting = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/Control/SubViewportContainer/SubViewport"]
