@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0mb2s4dm2mtu"]
+[gd_scene load_steps=4 format=3 uid="uid://c0mb2s4dm2mtu"]
 
 [ext_resource type="Texture2D" uid="uid://6w4yaqwrfrsb" path="res://assets/rooms/classroom.png" id="1_4r5oh"]
 [ext_resource type="PackedScene" uid="uid://8o5ogsbmh1af" path="res://scenes/objecs/desk.tscn" id="2_2nu6u"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2nu6u"]
+normal = Vector2(-1, 0)
 
 [node name="Classroom" type="Node2D"]
 
@@ -141,3 +144,31 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Desk" parent="Sprite2D/GridContainer/Control25" instance=ExtResource("2_2nu6u")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(0, 487)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_2nu6u")
+disabled = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(0, -384)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_2nu6u")
+disabled = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(-288, -160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_2nu6u")
+disabled = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Sprite2D"]
+position = Vector2(288, -72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D4"]
+shape = SubResource("WorldBoundaryShape2D_2nu6u")
+disabled = true

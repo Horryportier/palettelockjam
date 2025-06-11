@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ouqm7b1no7cn"]
+[gd_scene load_steps=3 format=3 uid="uid://ouqm7b1no7cn"]
 
 [ext_resource type="PackedScene" uid="uid://c0mb2s4dm2mtu" path="res://scenes/classroom/classroom.tscn" id="1_2yu1p"]
+[ext_resource type="PackedScene" uid="uid://dm76mwn7ctnc1" path="res://scenes/player/player.tscn" id="2_f1tf0"]
 
 [node name="Root" type="Node"]
 
 [node name="Classroom" parent="." instance=ExtResource("1_2yu1p")]
+
+[node name="Player" parent="." instance=ExtResource("2_f1tf0")]
+position = Vector2(159, -303)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)

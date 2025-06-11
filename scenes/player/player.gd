@@ -1,0 +1,83 @@
+extends CharacterBody2D
+
+@export var speed: float
+@onready var visual: CanvasGroup = $Visual
+
+var state: StateDelegate
+
+var facing_direction: Vector2
+var last_non_zero_velocity: Vector2
+
+var sprites: Array[AnimatedSprite2D]
+
+func _ready() -> void:
+	state = StateDelegate.new()
+	state.add_state(_idle_state, "IDLE", _idle_enter_state)
+	state.add_state(_walk_state, "WALK", _walk_enter_state)
+	state.set_default_state(_idle_state)
+	sprites.assign(visual.get_children().filter(func (x: Node) -> bool: return x is AnimatedSprite2D))
+	
+
+func _process(delta: float) -> void:
+	var direction = Input.get_vector("left", "right", "up", "down")
+	velocity = direction * speed * delta
+	if !velocity.is_zero_approx():
+		last_non_zero_velocity = velocity
+	move_and_slide()
+	flip_h()
+	facing_direction = _calculate_facing_direction()
+	state.tick()
+
+func _palay_sync_anim(anim_name: String) -> void: 
+	for child in visual.get_children():
+		if child is AnimatedSprite2D:
+			child.stop()
+			child.play(anim_name)
+
+func _calculate_facing_direction() -> Vector2:
+	var lnzv:  = last_non_zero_velocity
+	if abs(lnzv.x) > abs(lnzv.y):
+		if lnzv.x < 0: return Vector2.LEFT
+		if lnzv.x > 0: return Vector2.RIGHT
+	else:
+		if lnzv.y < 0: return Vector2.UP
+		if lnzv.x > 0: return Vector2.DOWN
+	return Vector2.DOWN
+
+func _get_anim_direction_name(anim_name: String) -> String:
+	match facing_direction:
+		Vector2.DOWN:
+			return anim_name + "_front"
+		Vector2.UP:
+			return anim_name + "_back"
+		Vector2.LEFT, Vector2.RIGHT:
+			return anim_name + "_side"
+	return anim_name + "_front"
+
+func flip_h() -> void:
+	match facing_direction:
+		Vector2.LEFT:
+			for s in sprites:
+				s.flip_h = true
+		_:
+			for s in sprites:
+				s.flip_h = false
+
+
+func _idle_state() -> Variant:
+	if !velocity.is_zero_approx():
+		return _walk_state
+	return null
+
+func _idle_enter_state() -> void:
+	_palay_sync_anim(_get_anim_direction_name("idle"))
+	pass
+
+func _walk_state() -> Variant:
+	if velocity.is_zero_approx():
+		return _idle_state
+	return null
+
+func _walk_enter_state() -> void:
+	_palay_sync_anim(_get_anim_direction_name("walk"))
+	pass
