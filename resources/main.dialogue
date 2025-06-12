@@ -1,0 +1,45 @@
+~ start
+Teacher: Who's there?
+Sho(Player): oh crap its Mrs. Ayame now i'm done for 
+Mrs. Ayame: Sho is that you.[wait=1] what are you doing at at school at this time its arleady...
+do show_teacher()
+Mrs. Ayame: What happened here it looks like huracaine tore trught the class. 
+Sho(Player): Teach you are pretty on spot.
+Mrs. Ayame: What you mean by that?
+Sho(Player): It's foult of the wind sprit.
+Mrs. Ayame: Wind spirit. Hah that's pretty cerative of you.
+Sho(Player): I'm telling the truth. Ah i guess no one gonna belive me.
+Sho(Player): oh crap! todays new [wave]JUMP JUMP[/wave] realese if i don't hurry up its gonna be sold out.
+Sho(Player): See you tommorow Teach gotta go.
+Mrs. Ayame: Hold on young lad do you thing i can let you off the hook when you made such mess.
+Sho(Player): But Teach i really need to go we are talking about [b]JUMP JUMP[/b].
+Mrs. Ayame: Hmm you got the point its gonna feature new chapter of [b]Fujin[/b]
+Sho(Player): oh so Teach is also an Otaku 
+Mrs. Ayame: OF COURSE!!! my plan was to watch anime and read manga all day[wait=1]
+[i]then reallity hit and i had to get an job and somehow i ended up ...[/i] 
+Sho(Player): ZZZ...
+Mrs. Ayame: Hey dont igonore me ahh!
+Mrs. Ayame: anyway we can't leave it as is.
+Mrs. Ayame: Hmm if you clean it up really fast like in about 
+- Easy(10min)
+	do set_time_limit(10)
+- Noraml(5min)
+	do set_time_limit(5)
+- Hard(3min)
+	do set_time_limit(3)
+Mrs. Ayame: I will let you go 
+Mrs. Ayame: What you think about that
+- do we have an deal?
+	Sho(Player): just my luck
+	Mrs. Ayame: want a tip?
+	- yes
+		Mrs. Ayame: if you pick up trash then rotating desks will be esier 
+	- no
+		Mrs. Ayame: ok.
+	do Game.start_run()
+- give up
+	Sho(Player): like i said it wasn't me that did it 
+	Mrs. Ayame: I guess jump jump isn't tha improtant to you then be it
+	Mrs. Ayame: for the next weak you will stay after class to reflect on your actions
+	do abandoned_run()
+=> END

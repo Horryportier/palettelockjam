@@ -19,17 +19,27 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://autolaod/game.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://scenes/ui/dialog/balloon.tscn"
 
 [display]
 
 window/size/viewport_width=1000
 window/size/viewport_height=1200
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://assets/": "purple",
 "res://autolaod/": "blue",
+"res://exports/": "gray",
 "res://resources/": "red",
 "res://scenes/": "green",
 "res://scenes/tools/": "teal",
@@ -86,6 +96,10 @@ collect={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(159, 24),"global_position":Vector2(167, 62),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://resources/main.dialogue")
 
 [rendering]
 

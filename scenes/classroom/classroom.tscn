@@ -1,11 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0mb2s4dm2mtu"]
+[gd_scene load_steps=16 format=3 uid="uid://c0mb2s4dm2mtu"]
 
 [ext_resource type="Texture2D" uid="uid://6w4yaqwrfrsb" path="res://assets/rooms/classroom.png" id="1_4r5oh"]
 [ext_resource type="Script" uid="uid://ddoib6bxl8hcy" path="res://scenes/classroom/classroom.gd" id="1_h5105"]
 [ext_resource type="PackedScene" uid="uid://c0dinj64atf53" path="res://scenes/objecs/student_desk/student_desk.tscn" id="2_2nu6u"]
 [ext_resource type="PackedScene" uid="uid://crn5jwbu30vkh" path="res://scenes/objecs/paper_scrap.tscn" id="2_h108p"]
 [ext_resource type="Theme" uid="uid://cypslpnbpj2x" path="res://resources/base_theme.tres" id="3_2n0w6"]
+[ext_resource type="Texture2D" uid="uid://b6643upqwvjsf" path="res://assets/rooms/classroom_shadow.png" id="4_3sap6"]
 [ext_resource type="PackedScene" uid="uid://di5eluip7pfk2" path="res://scenes/classroom/aligment_indicator.tscn" id="5_2n0w6"]
+[ext_resource type="Texture2D" uid="uid://2lace08idgce" path="res://assets/rooms/classroom_light_beams.png" id="7_4j162"]
+[ext_resource type="PackedScene" uid="uid://cch7867wj33v2" path="res://scenes/teacher/teacher.tscn" id="9_gyn4g"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gyn4g"]
+blend_mode = 4
+light_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0fe7p"]
 size = Vector2(600, 13)
@@ -19,6 +26,10 @@ size = Vector2(20, 1000)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j162"]
 size = Vector2(20, 1000)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3sap6"]
+blend_mode = 4
+light_mode = 2
+
 [node name="Classroom" type="Node2D" node_paths=PackedStringArray("desks_grid") groups=["Classroom"]]
 script = ExtResource("1_h5105")
 desks_grid = NodePath("Sprite2D/Desks")
@@ -29,7 +40,13 @@ paper_scrap = ExtResource("2_h108p")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4r5oh")
 
-[node name="Timer" type="RichTextLabel" parent="Sprite2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.0870161, 0.0870161, 0.0870161, 1)
+material = SubResource("CanvasItemMaterial_gyn4g")
+texture = ExtResource("4_3sap6")
+
+[node name="BoardTimer" type="RichTextLabel" parent="Sprite2D"]
+unique_name_in_owner = true
 offset_left = -44.0
 offset_top = -459.0
 offset_right = 46.0
@@ -285,3 +302,13 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Colliders/StaticBody2D4"]
 position = Vector2(10, 63)
 shape = SubResource("RectangleShape2D_4j162")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.28756, 0.228293, 0.231953, 1)
+material = SubResource("CanvasItemMaterial_3sap6")
+texture = ExtResource("7_4j162")
+
+[node name="Teacher" parent="." instance=ExtResource("9_gyn4g")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(266, -310)

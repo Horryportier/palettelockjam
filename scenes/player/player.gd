@@ -17,12 +17,18 @@ func _ready() -> void:
 	radar.body_tracked.connect(func (body: Node2D) -> void: body.is_in_range = true)
 	radar.body_untracked.connect(func (body: Node2D) -> void: body.is_in_range = false)
 	state = StateDelegate.new()
-	state.add_state(_idle_state, "IDLE", _idle_enter_state)
-	state.add_state(_walk_state, "WALK", _walk_enter_state)
+	state.add_state(_idle_state, "idle", _idle_enter_state)
+	state.add_state(_walk_state, "walk", _walk_enter_state)
+	state.add_state(_talk_state, "talk", _talk_enter_state)
 	state.set_default_state(_idle_state)
 	sprites.assign(visual.get_children().filter(func (x: Node) -> bool: return x is AnimatedSprite2D))
+	DialogueManager.dialogue_started.connect(func (_resource: DialogueResource) -> void: state.set_state(_talk_state))
+	DialogueManager.dialogue_ended.connect(func (_resource: DialogueResource) -> void: state.set_state(_idle_state))
 
 func _process(delta: float) -> void:
+	if state.is_state(_talk_state):
+		state.tick()
+		return
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * speed * delta
 	if !velocity.is_zero_approx():
@@ -67,7 +73,7 @@ func flip_h() -> void:
 		Vector2.LEFT:
 			for s in sprites:
 				s.flip_h = true
-		_:
+		Vector2.RIGHT:
 			for s in sprites:
 				s.flip_h = false
 
@@ -88,4 +94,10 @@ func _walk_state() -> Variant:
 
 func _walk_enter_state() -> void:
 	_palay_sync_anim(_get_anim_direction_name("walk"))
+	pass
+
+func _talk_state() -> Variant:
+	return null
+
+func _talk_enter_state() -> void:
 	pass

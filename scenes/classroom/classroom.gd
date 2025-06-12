@@ -13,8 +13,10 @@ var level_beat: bool
 
 @export var paper_scrap: PackedScene
 
+@onready var timer: RichTextLabel = %BoardTimer
+@onready var teacher: CharacterBody2D = %Teacher
 
-@onready var timer: RichTextLabel = $Sprite2D/Timer
+@onready var story: DialogueResource =   preload("uid://bsvh3qcu5w77o")
 
 var start_time : float = 5 * 60
 var time_elapsed : float = start_time
@@ -24,8 +26,11 @@ var milliseconds: float
 var time_string: String
 var rotation_speed: float
 
+var level_started: bool
 
 func  _ready() -> void:
+	timer.hide()
+	Game._start_run.connect(start_level)
 	for control: Control in desks_grid.get_children():
 		if control.get_child_count() != 2:
 			push_warning("desk control node has wrong amonut of children")
@@ -37,8 +42,11 @@ func  _ready() -> void:
 	hide_indicators()
 	scramble_desks()
 	distribute_scrap()
+	DialogueManager.show_dialogue_balloon(story, "start", [self])
 
 func _process(delta: float) -> void:
+	if !level_started: 
+		return
 	if level_beat:
 		return
 	time_elapsed -= delta
@@ -48,17 +56,37 @@ func _process(delta: float) -> void:
 	time_string = "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 	timer.text = "[color=#ffe7d6]%s[/color]" % [time_string]
 	Game.rottaion_speed = remap(PaperScrap.score, 0, scrap_amount, 0.5, 0.01)
+	if time_elapsed <= 0: 
+		game_finshed(false)
 	for desk: StudentDesk in desks.values():
 		if !desk.is_aligned():
 			return
 	if PaperScrap.score >= scrap_amount:
 		level_beat = true
-		game_finshed()
+		game_finshed(false)
 
+func start_level() -> void:
+	DialogueManager.dialogue_ended.emit()
+	timer.show()
+	level_started = true
 
-func game_finshed():
-	Game.run_finished.emit(start_time - time_elapsed)
+func show_teacher() -> void:
+	teacher.show()
 
+func set_time_limit(time: float):
+	start_time = time * 60 
+
+func game_finshed(abounded: bool) -> void:
+	var state: Game.FailureState  = Game.FailureState.None
+	if !level_beat: 
+		state = Game.FailureState.RunnedOutOfTime
+	if abounded:
+		state = Game.FailureState.AbandonedRun
+	Game.run_finished.emit(start_time - time_elapsed, state)
+
+func abandoned_run() -> void:
+	game_finshed(true)
+	
 func hide_indicators() -> void:
 	for inidicator: Control in aligment_indicators.values():
 		inidicator.hide()
