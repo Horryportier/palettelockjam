@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c58xy3jttxf6m"]
+
+[ext_resource type="Script" uid="uid://fftlcw0tsjaq" path="res://scenes/objecs/student_desk/student_desk.gd" id="1_e5jpl"]
+[ext_resource type="PackedScene" uid="uid://s5tqtry6mxgq" path="res://scenes/objecs/chair.tscn" id="2_jmbwc"]
+[ext_resource type="Texture2D" uid="uid://dx7xsqh6dlsx4" path="res://assets/objects/teacher_chair.png" id="3_betir"]
+[ext_resource type="PackedScene" uid="uid://bv211sqq6c3y1" path="res://scenes/objecs/teacher_desk.tscn" id="4_5j3vq"]
+
+[node name="TeacherSet" type="Node2D"]
+script = ExtResource("1_e5jpl")
+max_player_distance = 150.0
+snap_distance = 10.0
+
+[node name="Chair" parent="." instance=ExtResource("2_jmbwc")]
+position = Vector2(0, -24)
+
+[node name="Sprite2D" parent="Chair" index="0"]
+texture = ExtResource("3_betir")
+
+[node name="CollisionShape2D" parent="Chair" index="1"]
+position = Vector2(2, 12)
+
+[node name="Desk" parent="." instance=ExtResource("4_5j3vq")]
+
+[editable path="Chair"]

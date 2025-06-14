@@ -15,6 +15,7 @@ var level_beat: bool
 
 @onready var timer: RichTextLabel = %BoardTimer
 @onready var teacher: CharacterBody2D = %Teacher
+@onready var teacher_desk: Control = %TeacherDeskSet
 
 @onready var story: DialogueResource =   preload("uid://bsvh3qcu5w77o")
 
@@ -29,8 +30,13 @@ var rotation_speed: float
 var level_started: bool
 
 func  _ready() -> void:
+	await Game.start_game
 	timer.hide()
 	Game._start_run.connect(start_level)
+	desks[teacher_desk] = teacher_desk.get_child(0) as Node2D
+	aligment_indicators[teacher_desk] = teacher_desk.get_child(1)
+	desks[teacher_desk].focused.connect(func () -> void: aligment_indicators[teacher_desk].show())
+	desks[teacher_desk].unfocused.connect(func () -> void: aligment_indicators[teacher_desk].hide())
 	for control: Control in desks_grid.get_children():
 		if control.get_child_count() != 2:
 			push_warning("desk control node has wrong amonut of children")

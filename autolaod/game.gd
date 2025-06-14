@@ -11,9 +11,13 @@ var time_limit: float
 
 @warning_ignore_start("unused_signal")
 signal run_finished(time: float, state: FailureState)
+signal start_game
 @warning_ignore_restore("unused_signal")
 
 signal _start_run
 
 func start_run() -> void:
 	_start_run.emit()
+
+func game_quit() -> void:
+	get_tree().quit()

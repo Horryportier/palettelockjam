@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv211sqq6c3y1"]
+
+[ext_resource type="Script" uid="uid://btwx6ufcxydvu" path="res://scenes/objecs/rotatable_object.gd" id="1_vmkll"]
+[ext_resource type="Texture2D" uid="uid://dwdwcg4om5yom" path="res://assets/objects/teacher_desk.png" id="2_vmkll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t14s8"]
+size = Vector2(44, 40)
+
+[node name="Desk" type="StaticBody2D" node_paths=PackedStringArray("visual", "collision_shape")]
+input_pickable = true
+script = ExtResource("1_vmkll")
+visual = NodePath("Sprite2D")
+collision_shape = NodePath("CollisionShape2D")
+sprite_angle_icrements = 15.0
+metadata/_custom_type_script = "uid://btwx6ufcxydvu"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vmkll")
+hframes = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 13)
+shape = SubResource("RectangleShape2D_t14s8")

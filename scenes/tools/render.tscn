@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqm555tq5063p" path="res://scenes/tools/render.gd" id="1_mwjap"]
 [ext_resource type="Script" uid="uid://c61eymebxygxi" path="res://scripts/sprite_stack.gd" id="2_320ab"]
-[ext_resource type="Texture2D" uid="uid://erv5u5pwp8bb" path="res://assets/school_desk.png" id="3_mwjap"]
+[ext_resource type="Texture2D" uid="uid://4qyr15mmmrnx" path="res://assets/teacher_chair.png" id="3_mwjap"]
 
 [node name="Render" type="Node" node_paths=PackedStringArray("subviewport", "sprite_stack", "camera")]
 script = ExtResource("1_mwjap")
@@ -13,9 +13,9 @@ sprite_stack_rotation = 15.0
 save_incremental = true
 clear_output = true
 output_path = "res://assets/spritestack_output/"
-file_name = "desk"
+file_name = "teacher_chair"
 sprite_sheet_save_path = "res://assets/objects/"
-sprite_sheet_file_name = "desk"
+sprite_sheet_file_name = "teacher_chair"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -52,7 +52,7 @@ render_target_update_mode = 4
 position = Vector2(75, 75)
 script = ExtResource("2_320ab")
 texture = ExtResource("3_mwjap")
-hframes = 19
+hframes = 14
 spacting = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/Control/SubViewportContainer/SubViewport"]

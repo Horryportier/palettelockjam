@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0mb2s4dm2mtu"]
+[gd_scene load_steps=17 format=3 uid="uid://c0mb2s4dm2mtu"]
 
 [ext_resource type="Texture2D" uid="uid://6w4yaqwrfrsb" path="res://assets/rooms/classroom.png" id="1_4r5oh"]
 [ext_resource type="Script" uid="uid://ddoib6bxl8hcy" path="res://scenes/classroom/classroom.gd" id="1_h5105"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b6643upqwvjsf" path="res://assets/rooms/classroom_shadow.png" id="4_3sap6"]
 [ext_resource type="PackedScene" uid="uid://di5eluip7pfk2" path="res://scenes/classroom/aligment_indicator.tscn" id="5_2n0w6"]
 [ext_resource type="Texture2D" uid="uid://2lace08idgce" path="res://assets/rooms/classroom_light_beams.png" id="7_4j162"]
+[ext_resource type="PackedScene" uid="uid://c58xy3jttxf6m" path="res://scenes/objecs/teacher_set.tscn" id="8_w1swj"]
 [ext_resource type="PackedScene" uid="uid://cch7867wj33v2" path="res://scenes/teacher/teacher.tscn" id="9_gyn4g"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gyn4g"]
@@ -47,14 +48,14 @@ texture = ExtResource("4_3sap6")
 
 [node name="BoardTimer" type="RichTextLabel" parent="Sprite2D"]
 unique_name_in_owner = true
-offset_left = -44.0
-offset_top = -459.0
-offset_right = 46.0
-offset_bottom = -419.0
+offset_left = -95.0
+offset_top = -475.0
+offset_right = 96.0
+offset_bottom = -408.0
 theme = ExtResource("3_2n0w6")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[color=#ffe7d6]20.00[/color]"
+text = "[color=#ffe7d6]20:00:20[/color]"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -303,6 +304,34 @@ metadata/_edit_lock_ = true
 position = Vector2(10, 63)
 shape = SubResource("RectangleShape2D_4j162")
 
+[node name="TeacherDeskSet" type="Control" parent="Sprite2D"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -326.0
+offset_right = 39.0
+offset_bottom = -286.0
+
+[node name="TeacherSet" parent="Sprite2D/TeacherDeskSet" instance=ExtResource("8_w1swj")]
+
+[node name="AligmentIndicator" parent="Sprite2D/TeacherDeskSet" instance=ExtResource("5_2n0w6")]
+layout_mode = 1
+
+[node name="Desk" parent="Sprite2D/TeacherDeskSet/AligmentIndicator" index="0"]
+offset_left = -25.0
+offset_top = -27.0
+offset_right = 15.0
+offset_bottom = 13.0
+scale = Vector2(1.28591, 1.30976)
+
+[node name="Chair" parent="Sprite2D/TeacherDeskSet/AligmentIndicator" index="1"]
+offset_left = -11.0
+offset_top = -41.0
+offset_right = 29.0
+offset_bottom = -1.0
+scale = Vector2(0.601472, 0.63471)
+
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(0.28756, 0.228293, 0.231953, 1)
 material = SubResource("CanvasItemMaterial_3sap6")
@@ -312,3 +341,5 @@ texture = ExtResource("7_4j162")
 unique_name_in_owner = true
 visible = false
 position = Vector2(266, -310)
+
+[editable path="Sprite2D/TeacherDeskSet/AligmentIndicator"]

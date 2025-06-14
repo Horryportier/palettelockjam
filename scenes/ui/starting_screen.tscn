@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfiqyl0gimulg"]
+
+[ext_resource type="Script" uid="uid://brvoavqpn6x8j" path="res://scenes/ui/starting_screen.gd" id="1_ckjm8"]
+[ext_resource type="Texture2D" uid="uid://1t56v5yejeh7" path="res://assets/ui/title_screen.png" id="1_yujsj"]
+[ext_resource type="Theme" uid="uid://cpbuyd1ox86va" path="res://resources/balloon_theme.tres" id="2_iaiyy"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ckjm8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.654902, 0.647059, 1)
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -155.0
+offset_right = 150.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = -50
+
+[node name="TextureRect" type="TextureRect" parent="Control/ColorRect/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_yujsj")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/ColorRect/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Start" type="Button" parent="Control/ColorRect/HFlowContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("2_iaiyy")
+theme_override_font_sizes/font_size = 32
+text = "Start"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="Control/ColorRect/HFlowContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="VFlowContainer" type="VFlowContainer" parent="Control/ColorRect/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Mute" type="CheckButton" parent="Control/ColorRect/HFlowContainer/VFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Mute"
+
+[node name="Label" type="Label" parent="Control/ColorRect/HFlowContainer/VFlowContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="Control/ColorRect/HFlowContainer/VFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2

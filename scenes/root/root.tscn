@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ouqm7b1no7cn"]
+[gd_scene load_steps=6 format=3 uid="uid://ouqm7b1no7cn"]
 
 [ext_resource type="PackedScene" uid="uid://c0mb2s4dm2mtu" path="res://scenes/classroom/classroom.tscn" id="1_2yu1p"]
 [ext_resource type="Script" uid="uid://mt0vxdst4fm6" path="res://scenes/root/root.gd" id="1_cj6gr"]
 [ext_resource type="PackedScene" uid="uid://dm76mwn7ctnc1" path="res://scenes/player/player.tscn" id="2_f1tf0"]
 [ext_resource type="PackedScene" uid="uid://clomhwynv1nnr" path="res://scenes/ui/finish_screen.tscn" id="4_3sdhb"]
+[ext_resource type="PackedScene" uid="uid://cfiqyl0gimulg" path="res://scenes/ui/starting_screen.tscn" id="5_rskmp"]
 
 [node name="Root" type="Node"]
 script = ExtResource("1_cj6gr")
@@ -14,7 +15,9 @@ script = ExtResource("1_cj6gr")
 position = Vector2(159, -303)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.7, 0.7)
 
 [node name="FinishScreen" parent="." instance=ExtResource("4_3sdhb")]
 visible = false
+
+[node name="CanvasLayer" parent="." instance=ExtResource("5_rskmp")]

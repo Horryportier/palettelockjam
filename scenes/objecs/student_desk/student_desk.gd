@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 		lock_rotattion_desk = true
 	if chair.current_angle == 0:
 		lock_rotattion_chair = true
-	if Input.is_action_pressed("move") and focus == Focus.Desk and !lock_position:
+	if Input.is_action_pressed("move") and (focus == Focus.Desk or focus == Focus.Chair) and !lock_position:
 		global_position = get_global_mouse_position()
 		if position.distance_to(Vector2.ZERO) <= snap_distance:
 			position = Vector2.ZERO 
