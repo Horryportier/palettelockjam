@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cablghyex6iur"
+path="res://.godot/imported/Polar Lights.ogg-a89adedf32e7f28ac4be31f75e219509.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Cozy Tunes (Basic)/Audio/ogg/Tracks/Polar Lights.ogg"
+dest_files=["res://.godot/imported/Polar Lights.ogg-a89adedf32e7f28ac4be31f75e219509.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

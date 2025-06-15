@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brmig30bd43ve"
+path="res://.godot/imported/alien remarks.mp3-bfa49ff99b2611ee206121e45d81d48c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Cozy Tunes (Basic)/Audio/mp3/Sound Effects/alien remarks.mp3"
+dest_files=["res://.godot/imported/alien remarks.mp3-bfa49ff99b2611ee206121e45d81d48c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

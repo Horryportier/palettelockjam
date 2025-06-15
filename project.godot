@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Game="*res://autolaod/game.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+MusicMenager="*res://autolaod/music_menager.tscn"
 
 [dialogue_manager]
 

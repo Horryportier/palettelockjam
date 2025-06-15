@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0dinj64atf53"]
+[gd_scene load_steps=8 format=3 uid="uid://c0dinj64atf53"]
 
 [ext_resource type="PackedScene" uid="uid://8o5ogsbmh1af" path="res://scenes/objecs/desk.tscn" id="1_jtadr"]
 [ext_resource type="Script" uid="uid://fftlcw0tsjaq" path="res://scenes/objecs/student_desk/student_desk.gd" id="1_nnfpj"]
 [ext_resource type="PackedScene" uid="uid://s5tqtry6mxgq" path="res://scenes/objecs/chair.tscn" id="2_nnfpj"]
+[ext_resource type="AudioStream" uid="uid://glffvs3rgglu" path="res://assets/audio/moving_object.wav" id="4_6ylk8"]
+[ext_resource type="AudioStream" uid="uid://dw8x8s0d60te2" path="res://assets/audio/moving_object2.wav" id="5_yfxqb"]
+[ext_resource type="AudioStream" uid="uid://d0pd5jkx0my1f" path="res://assets/audio/moving_object3.wav" id="6_o00rd"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o18wr"]
+streams_count = 3
+stream_0/stream = ExtResource("4_6ylk8")
+stream_1/stream = ExtResource("5_yfxqb")
+stream_2/stream = ExtResource("6_o00rd")
 
 [node name="StudentDesk" type="Node2D"]
 script = ExtResource("1_nnfpj")
@@ -13,3 +22,9 @@ snap_distance = 10.0
 
 [node name="Chair" parent="." instance=ExtResource("2_nnfpj")]
 position = Vector2(0, 32)
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_o18wr")
+volume_db = 2.447
+pitch_scale = 0.77

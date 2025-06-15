@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vyqpsgbtxd3h"
+path="res://.godot/imported/alien remarks.ogg-4c4b5ec6e44fa51677ec62a6b7d061ce.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Cozy Tunes (Basic)/Audio/ogg/Sound Effects/alien remarks.ogg"
+dest_files=["res://.godot/imported/alien remarks.ogg-4c4b5ec6e44fa51677ec62a6b7d061ce.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

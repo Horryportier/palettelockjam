@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhl2ldv82nqac"]
+
+[ext_resource type="AudioStream" uid="uid://di7hug1y6urwr" path="res://assets/audio/Cozy Tunes (Basic)/Audio/wav/Tracks/Evening Harmony.wav" id="1_8uqeu"]
+[ext_resource type="AudioStream" uid="uid://b8e126pwh1yen" path="res://assets/audio/Cozy Tunes (Basic)/Audio/wav/Tracks/Sunlight Through Leaves.wav" id="2_h77uw"]
+[ext_resource type="AudioStream" uid="uid://cyvd6gs2qersx" path="res://assets/audio/Cozy Tunes (Basic)/Audio/wav/Tracks/Polar Lights.wav" id="3_wqtkq"]
+[ext_resource type="Script" uid="uid://bd2iing177xej" path="res://autolaod/music_menager.gd" id="4_g01c7"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_endy0"]
+stream_count = 3
+stream_0 = ExtResource("1_8uqeu")
+stream_1 = ExtResource("2_h77uw")
+stream_2 = ExtResource("3_wqtkq")
+
+[node name="MusicMenager" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamPlaylist_endy0")
+volume_db = -10.0
+script = ExtResource("4_g01c7")

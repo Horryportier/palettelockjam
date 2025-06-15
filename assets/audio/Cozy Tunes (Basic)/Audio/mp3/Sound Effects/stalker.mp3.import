@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnq2bvyx0yhfj"
+path="res://.godot/imported/stalker.mp3-6a0127c7a2ee00206560ae4c8ef50e5f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Cozy Tunes (Basic)/Audio/mp3/Sound Effects/stalker.mp3"
+dest_files=["res://.godot/imported/stalker.mp3-6a0127c7a2ee00206560ae4c8ef50e5f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

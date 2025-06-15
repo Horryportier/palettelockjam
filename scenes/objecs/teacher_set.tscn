@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c58xy3jttxf6m"]
+[gd_scene load_steps=9 format=3 uid="uid://c58xy3jttxf6m"]
 
 [ext_resource type="Script" uid="uid://fftlcw0tsjaq" path="res://scenes/objecs/student_desk/student_desk.gd" id="1_e5jpl"]
 [ext_resource type="PackedScene" uid="uid://s5tqtry6mxgq" path="res://scenes/objecs/chair.tscn" id="2_jmbwc"]
 [ext_resource type="Texture2D" uid="uid://dx7xsqh6dlsx4" path="res://assets/objects/teacher_chair.png" id="3_betir"]
 [ext_resource type="PackedScene" uid="uid://bv211sqq6c3y1" path="res://scenes/objecs/teacher_desk.tscn" id="4_5j3vq"]
+[ext_resource type="AudioStream" uid="uid://glffvs3rgglu" path="res://assets/audio/moving_object.wav" id="5_5j3vq"]
+[ext_resource type="AudioStream" uid="uid://dw8x8s0d60te2" path="res://assets/audio/moving_object2.wav" id="6_bmq1h"]
+[ext_resource type="AudioStream" uid="uid://d0pd5jkx0my1f" path="res://assets/audio/moving_object3.wav" id="7_jflmg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j8j27"]
+streams_count = 3
+stream_0/stream = ExtResource("5_5j3vq")
+stream_1/stream = ExtResource("6_bmq1h")
+stream_2/stream = ExtResource("7_jflmg")
 
 [node name="TeacherSet" type="Node2D"]
 script = ExtResource("1_e5jpl")
@@ -20,5 +29,11 @@ texture = ExtResource("3_betir")
 position = Vector2(2, 12)
 
 [node name="Desk" parent="." instance=ExtResource("4_5j3vq")]
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_j8j27")
+volume_db = 2.447
+pitch_scale = 0.77
 
 [editable path="Chair"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://56b6hjedmccm"
+path="res://.godot/imported/Sunlight Through Leaves.ogg-3068545bc53024348e94be1e9e4e5a36.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Cozy Tunes (Basic)/Audio/ogg/Tracks/Sunlight Through Leaves.ogg"
+dest_files=["res://.godot/imported/Sunlight Through Leaves.ogg-3068545bc53024348e94be1e9e4e5a36.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

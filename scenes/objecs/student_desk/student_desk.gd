@@ -10,6 +10,8 @@ signal unfocused
 @onready var desk: RotatableObject = $Desk
 @onready var chair: RotatableObject = $Chair
 
+@onready var audio: AudioStreamPlayer2D = %Audio
+
 enum Focus {
 	None,
 	Desk,
@@ -60,25 +62,31 @@ func _process(_delta: float) -> void:
 		if Input.is_action_pressed("rotate_left") and focus == Focus.Desk and can_rotate:
 			desk.rotate_object(desk.current_angle + 15)
 			can_rotate = false
+			play_audio()
 			delay_rotate.call()
 		if Input.is_action_pressed("rotate_right") and focus == Focus.Desk and can_rotate:
 			if desk.current_angle <= 0:
 				desk.current_angle = 360
 			desk.rotate_object(desk.current_angle - 15)
 			can_rotate = false
+			play_audio()
 			delay_rotate.call()
 	if !lock_rotattion_chair:
 		if Input.is_action_pressed("rotate_left") and focus == Focus.Chair and can_rotate:
 			chair.rotate_object(chair.current_angle + 15)
 			can_rotate = false
+			play_audio()
 			delay_rotate.call()
 		if Input.is_action_pressed("rotate_right") and focus == Focus.Chair and can_rotate:
 			if chair.current_angle <= 0:
 				chair.current_angle = 360
 			chair.rotate_object(chair.current_angle - 15)
 			can_rotate = false
+			play_audio()
 			delay_rotate.call()
-
+func play_audio() -> void:
+	if !audio.playing:
+		audio.play()
 
 func rotate_object(object:  RotatableObject, angle: float):
 	object.rotate_object(angle)

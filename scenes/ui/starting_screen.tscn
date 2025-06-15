@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfiqyl0gimulg"]
+[gd_scene load_steps=5 format=3 uid="uid://cfiqyl0gimulg"]
 
 [ext_resource type="Script" uid="uid://brvoavqpn6x8j" path="res://scenes/ui/starting_screen.gd" id="1_ckjm8"]
 [ext_resource type="Texture2D" uid="uid://1t56v5yejeh7" path="res://assets/ui/title_screen.png" id="1_yujsj"]
 [ext_resource type="Theme" uid="uid://cpbuyd1ox86va" path="res://resources/balloon_theme.tres" id="2_iaiyy"]
 
+[sub_resource type="Curve" id="Curve_ckjm8"]
+_limits = [-80.0, 6.0, 0.0, 100.0]
+_data = [Vector2(0, -80), 0.0, 2.38728, 0, 0, Vector2(87.4016, 6), 0.0, 0.0, 0, 0, Vector2(100, 6), -0.519928, 0.0, 0, 0]
+point_count = 3
+
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ckjm8")
+audio_curver = SubResource("Curve_ckjm8")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.654902, 0.647059, 1)
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Control/ColorRect"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,19 +43,22 @@ offset_right = 150.0
 offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/VSplitContainer"]
+layout_mode = 2
 theme_override_constants/h_separation = -50
 
-[node name="TextureRect" type="TextureRect" parent="Control/ColorRect/HFlowContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/VSplitContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_yujsj")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Control/ColorRect/HFlowContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/VSplitContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Start" type="Button" parent="Control/ColorRect/HFlowContainer/HFlowContainer"]
+[node name="Start" type="Button" parent="Control/VSplitContainer/HFlowContainer/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -59,27 +68,43 @@ theme_override_font_sizes/font_size = 32
 text = "Start"
 metadata/_edit_use_anchors_ = true
 
-[node name="Quit" type="Button" parent="Control/ColorRect/HFlowContainer/HFlowContainer"]
+[node name="Quit" type="Button" parent="Control/VSplitContainer/HFlowContainer/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="VFlowContainer" type="VFlowContainer" parent="Control/ColorRect/HFlowContainer"]
+[node name="VFlowContainer" type="VFlowContainer" parent="Control/VSplitContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Mute" type="CheckButton" parent="Control/ColorRect/HFlowContainer/VFlowContainer"]
+[node name="Mute" type="CheckButton" parent="Control/VSplitContainer/HFlowContainer/VFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Mute"
 
-[node name="Label" type="Label" parent="Control/ColorRect/HFlowContainer/VFlowContainer"]
+[node name="Label" type="Label" parent="Control/VSplitContainer/HFlowContainer/VFlowContainer"]
 layout_mode = 2
 text = "Volume"
 
-[node name="Volume" type="HSlider" parent="Control/ColorRect/HFlowContainer/VFlowContainer"]
+[node name="Volume" type="HSlider" parent="Control/VSplitContainer/HFlowContainer/VFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+value = 98.0
+
+[node name="GridContainer" type="GridContainer" parent="Control/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "WSAD - move"
+
+[node name="Label2" type="Label" parent="Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Z/X - rotate"
+
+[node name="Label3" type="Label" parent="Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "LMB - move"

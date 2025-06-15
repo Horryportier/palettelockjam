@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0mb2s4dm2mtu"]
+[gd_scene load_steps=18 format=3 uid="uid://c0mb2s4dm2mtu"]
 
 [ext_resource type="Texture2D" uid="uid://6w4yaqwrfrsb" path="res://assets/rooms/classroom.png" id="1_4r5oh"]
 [ext_resource type="Script" uid="uid://ddoib6bxl8hcy" path="res://scenes/classroom/classroom.gd" id="1_h5105"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://2lace08idgce" path="res://assets/rooms/classroom_light_beams.png" id="7_4j162"]
 [ext_resource type="PackedScene" uid="uid://c58xy3jttxf6m" path="res://scenes/objecs/teacher_set.tscn" id="8_w1swj"]
 [ext_resource type="PackedScene" uid="uid://cch7867wj33v2" path="res://scenes/teacher/teacher.tscn" id="9_gyn4g"]
+
+[sub_resource type="Curve" id="Curve_w1swj"]
+_limits = [0.01, 0.5, 0.0, 1.0]
+_data = [Vector2(0.250656, 0.01), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.926925, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gyn4g"]
 blend_mode = 4
@@ -36,6 +41,7 @@ script = ExtResource("1_h5105")
 desks_grid = NodePath("Sprite2D/Desks")
 scrap_amount = 20
 position_offset_max = Vector2(20, 20)
+rotation_speed_curve = SubResource("Curve_w1swj")
 paper_scrap = ExtResource("2_h108p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

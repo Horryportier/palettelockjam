@@ -6,6 +6,7 @@ extends Node2D
 @export var scrap_amount: int
 
 @export var position_offset_max: Vector2
+@export var rotation_speed_curve: Curve
 var desks: Dictionary[Control, StudentDesk]
 var aligment_indicators: Dictionary[Control, Control]
 
@@ -61,7 +62,7 @@ func _process(delta: float) -> void:
 	milliseconds = fmod(time_elapsed, 1) * 100
 	time_string = "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 	timer.text = "[color=#ffe7d6]%s[/color]" % [time_string]
-	Game.rottaion_speed = remap(PaperScrap.score, 0, scrap_amount, 0.5, 0.01)
+	Game.rottaion_speed = rotation_speed_curve.sample(remap(PaperScrap.score, 0, scrap_amount, 1, 0))
 	if time_elapsed <= 0: 
 		game_finshed(false)
 	for desk: StudentDesk in desks.values():
